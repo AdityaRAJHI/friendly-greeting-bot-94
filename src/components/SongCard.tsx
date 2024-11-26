@@ -29,7 +29,12 @@ export const SongCard = ({ title, artist, image, isNewChoice, recordings }: Song
           )}
         </div>
       </div>
-      <Button className="bg-red-500 hover:bg-red-600">Sing</Button>
+      <Button 
+        onClick={() => console.log('Sing button clicked')}
+        className="bg-red-500 hover:bg-red-600 text-white"
+      >
+        Sing
+      </Button>
     </Card>
   );
 };
