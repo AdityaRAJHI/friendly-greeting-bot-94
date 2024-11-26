@@ -17,13 +17,17 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 1,
-      onError: (error) => {
-        middlewareManager.error.handleError(error as Error);
+      meta: {
+        onError: (error: Error) => {
+          middlewareManager.error.handleError(error);
+        },
       },
     },
     mutations: {
-      onError: (error) => {
-        middlewareManager.error.handleError(error as Error);
+      meta: {
+        onError: (error: Error) => {
+          middlewareManager.error.handleError(error);
+        },
       },
     },
   },
