@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 
 interface SongCardProps {
   title: string;
@@ -10,6 +11,15 @@ interface SongCardProps {
 }
 
 export const SongCard = ({ title, artist, image, isNewChoice, recordings }: SongCardProps) => {
+  const { toast } = useToast();
+
+  const handleSingClick = () => {
+    toast({
+      title: "Starting Karaoke",
+      description: `Loading "${title}" by ${artist}...`,
+    });
+  };
+
   return (
     <Card className="flex items-center gap-3 p-2 mb-3">
       <img src={image} alt={title} className="w-16 h-16 rounded-lg object-cover" />
@@ -30,7 +40,7 @@ export const SongCard = ({ title, artist, image, isNewChoice, recordings }: Song
         </div>
       </div>
       <Button 
-        onClick={() => console.log('Sing button clicked')}
+        onClick={handleSingClick}
         className="bg-red-500 hover:bg-red-600 text-white"
       >
         Sing

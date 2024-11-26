@@ -2,8 +2,13 @@ import { Navigation } from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Home, Users, MessageSquare } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 const RoomPage = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
   const rooms = [
     { id: 1, type: "Live Duet", count: "43.1 k", color: "bg-green-100" },
     { id: 2, type: "Sing", count: "54.1 k", color: "bg-red-100" },
@@ -49,15 +54,30 @@ const RoomPage = () => {
     },
   ];
 
+  const handleRoomClick = (room: any) => {
+    toast({
+      title: "Joining Room",
+      description: `Joining ${room.type} room...`,
+    });
+  };
+
   return (
     <div className="max-w-md mx-auto bg-white min-h-screen pb-20">
       <div className="p-4 flex justify-between items-center border-b">
         <h1 className="font-semibold">Party</h1>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => navigate("/notification")}
+          >
             <MessageSquare className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            onClick={() => navigate("/")}
+          >
             <Home className="h-5 w-5" />
           </Button>
         </div>
@@ -66,7 +86,11 @@ const RoomPage = () => {
       <div className="p-4">
         <div className="grid grid-cols-3 gap-4 mb-6">
           {rooms.map((room) => (
-            <Card key={room.id} className={`${room.color} p-4 flex flex-col items-center`}>
+            <Card 
+              key={room.id} 
+              className={`${room.color} p-4 flex flex-col items-center cursor-pointer hover:opacity-80 transition-opacity`}
+              onClick={() => handleRoomClick(room)}
+            >
               <span className="font-medium">{room.type}</span>
               <div className="flex items-center gap-1 mt-1">
                 <Users className="h-4 w-4" />
@@ -80,15 +104,38 @@ const RoomPage = () => {
           <div className="flex justify-between items-center mb-2">
             <h2 className="font-semibold">Recommend</h2>
             <div className="flex gap-2 text-sm text-gray-500">
-              <span className="font-medium">Karaoke</span>
-              <span>Chat</span>
-              <span>Game</span>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="font-medium"
+                onClick={() => toast({ title: "Karaoke selected" })}
+              >
+                Karaoke
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => toast({ title: "Chat selected" })}
+              >
+                Chat
+              </Button>
+              <Button 
+                variant="ghost" 
+                size="sm"
+                onClick={() => toast({ title: "Game selected" })}
+              >
+                Game
+              </Button>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             {recommendedRooms.map((room) => (
-              <Card key={room.id} className={`${room.color} p-4`}>
+              <Card 
+                key={room.id} 
+                className={`${room.color} p-4 cursor-pointer hover:opacity-80 transition-opacity`}
+                onClick={() => handleRoomClick(room)}
+              >
                 <div className="flex flex-col h-full">
                   <span className="text-sm bg-white/50 rounded-full px-2 py-0.5 w-fit">
                     {room.type}
