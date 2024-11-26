@@ -2,7 +2,7 @@ import { checkAuth, setAuthToken, removeAuthToken } from './authMiddleware';
 import { errorHandler, networkErrorHandler } from './errorMiddleware';
 import { loggerMiddleware } from './loggingMiddleware';
 
-export const middlewareManager = {
+const middlewareManager = {
   auth: {
     checkAuth,
     setAuthToken,
