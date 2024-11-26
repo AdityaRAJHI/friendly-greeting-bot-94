@@ -1,4 +1,3 @@
-import { Home, Music2, Mic2, MessageCircle, User2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -15,35 +14,53 @@ export const Navigation = () => {
         >
           <div className="w-6 h-6 flex items-center justify-center">
             <img 
-              src="/lovable-uploads/7b2c046b-0e45-400c-a926-9cef66a039bc.png" 
+              src="/lovable-uploads/party.png" 
               alt="Room" 
               className="w-5 h-5 object-contain"
             />
           </div>
-          <span className="text-xs text-gray-600">Room</span>
+          <span className="text-xs text-gray-600">Party</span>
         </Button>
         <Button 
           variant="ghost" 
           className="flex-col gap-1 hover:bg-transparent"
           onClick={() => navigate("/")}
         >
-          <Music2 className="w-6 h-6 text-gray-600" />
+          <div className="w-6 h-6 flex items-center justify-center">
+            <img 
+              src="/lovable-uploads/moment.png" 
+              alt="Moment" 
+              className="w-5 h-5 object-contain"
+            />
+          </div>
           <span className="text-xs text-gray-600">Moment</span>
         </Button>
         <Button 
           variant="ghost" 
-          className="flex-col gap-1 hover:bg-transparent"
+          className="flex-col gap-1 hover:bg-transparent relative"
           onClick={() => navigate("/sing")}
         >
-          <Mic2 className="w-6 h-6 text-green-500" />
-          <span className="text-xs text-green-500">Sing</span>
+          <div className="w-14 h-14 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center -mt-5">
+            <img 
+              src="/lovable-uploads/mic.png" 
+              alt="Sing" 
+              className="w-8 h-8 object-contain"
+            />
+          </div>
+          <span className="text-xs text-green-500 absolute bottom-0">Sing</span>
         </Button>
         <Button 
           variant="ghost" 
           className="flex-col gap-1 hover:bg-transparent"
           onClick={() => navigate("/chat")}
         >
-          <MessageCircle className="w-6 h-6 text-gray-600" />
+          <div className="w-6 h-6 flex items-center justify-center">
+            <img 
+              src="/lovable-uploads/chat.png" 
+              alt="Chat" 
+              className="w-5 h-5 object-contain"
+            />
+          </div>
           <span className="text-xs text-gray-600">Chat</span>
         </Button>
         <Button 
@@ -51,7 +68,13 @@ export const Navigation = () => {
           className="flex-col gap-1 hover:bg-transparent"
           onClick={() => navigate("/profile")}
         >
-          <User2 className="w-6 h-6 text-gray-600" />
+          <div className="w-6 h-6 flex items-center justify-center">
+            <img 
+              src="/lovable-uploads/profile.png" 
+              alt="Profile" 
+              className="w-5 h-5 object-contain"
+            />
+          </div>
           <span className="text-xs text-gray-600">Me</span>
         </Button>
       </div>
