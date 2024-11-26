@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
-import { Coin, Crown, Diamond, Gift } from "lucide-react";
+import { Coins, Crown, Diamond, Gift } from "lucide-react";
 
 const StorePage = () => {
   const { toast } = useToast();
@@ -13,7 +13,7 @@ const StorePage = () => {
       id: 1,
       title: "100 Coins",
       price: "$0.99",
-      icon: <Coin className="w-8 h-8 text-yellow-500" />,
+      icon: <Coins className="w-8 h-8 text-yellow-500" />,
       description: "Basic coin package"
     },
     {
