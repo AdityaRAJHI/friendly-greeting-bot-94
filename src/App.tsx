@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import middlewareManager from "./middleware/middlewareManager";
+import { toast } from "sonner";
 import Opening from "./pages/Opening";
 import Index from "./pages/Index";
 import NotificationPage from "./pages/Notification";
@@ -19,14 +19,20 @@ const queryClient = new QueryClient({
       retry: 1,
       meta: {
         onError: (error: Error) => {
-          middlewareManager.error.handleError(error);
+          console.error('Query Error:', error);
+          toast.error('An error occurred', {
+            description: error.message,
+          });
         },
       },
     },
     mutations: {
       meta: {
         onError: (error: Error) => {
-          middlewareManager.error.handleError(error);
+          console.error('Mutation Error:', error);
+          toast.error('An error occurred', {
+            description: error.message,
+          });
         },
       },
     },
@@ -37,8 +43,10 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    middlewareManager.logger('Checking authentication');
-    middlewareManager.auth.checkAuth(navigate);
+    const token = localStorage.getItem('auth_token');
+    if (!token) {
+      navigate('/opening');
+    }
   }, [navigate]);
 
   return <>{children}</>;
