@@ -12,9 +12,13 @@ const Opening = () => {
           <Music2 className="w-20 h-20 text-white mx-auto animate-bounce" />
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
           SingingStarApp
         </h1>
+        
+        <p className="text-sm md:text-base text-white/90 mb-4 italic">
+          with love by Rajsinha
+        </p>
         
         <p className="text-lg md:text-xl text-white/80 mb-8 max-w-md mx-auto">
           Your personal karaoke companion. Sing, share, and shine!
