@@ -7,10 +7,12 @@ import { CategoryButton } from "@/components/CategoryButton";
 import { Navigation } from "@/components/Navigation";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState("For You");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const songs = [
     {
@@ -53,17 +55,11 @@ const Index = () => {
   };
 
   const handleStoreClick = () => {
-    toast({
-      title: "Store",
-      description: "Opening store...",
-    });
+    navigate("/store");
   };
 
   const handleListClick = () => {
-    toast({
-      title: "List",
-      description: "Opening list...",
-    });
+    navigate("/list");
   };
 
   return (
@@ -163,7 +159,6 @@ const Index = () => {
         </div>
       </ScrollArea>
 
-      {/* Bottom Navigation */}
       <Navigation />
     </div>
   );
