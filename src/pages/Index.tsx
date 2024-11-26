@@ -1,13 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Store, ListTodo, Music, User } from "lucide-react";
 import { SongCard } from "@/components/SongCard";
 import { CategoryButton } from "@/components/CategoryButton";
 import { Navigation } from "@/components/Navigation";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState("For You");
+  const { toast } = useToast();
+
   const songs = [
     {
       id: 1,
@@ -33,13 +37,42 @@ const Index = () => {
     }
   ];
 
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    toast({
+      title: `${tab} Selected`,
+      description: `Showing ${tab.toLowerCase()} songs...`,
+    });
+  };
+
+  const handleCategoryClick = (category: string) => {
+    toast({
+      title: category,
+      description: `Viewing ${category}...`,
+    });
+  };
+
+  const handleStoreClick = () => {
+    toast({
+      title: "Store",
+      description: "Opening store...",
+    });
+  };
+
+  const handleListClick = () => {
+    toast({
+      title: "List",
+      description: "Opening list...",
+    });
+  };
+
   return (
     <div className="max-w-md mx-auto bg-white min-h-screen">
       {/* Header */}
       <div className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <img
-            src="/lovable-uploads/8073f6c0-1dfa-4cb9-be05-662565b5e703.png"
+            src="/lovable-uploads/b1ca1849-ac3d-40e8-8453-aa9e9fe7757e.png"
             alt="Profile"
             className="w-10 h-10 rounded-full"
           />
@@ -52,8 +85,14 @@ const Index = () => {
           </div>
         </div>
         <div className="flex gap-4">
-          <Store className="w-6 h-6 text-yellow-500" />
-          <ListTodo className="w-6 h-6 text-green-500" />
+          <Store 
+            className="w-6 h-6 text-yellow-500 cursor-pointer" 
+            onClick={handleStoreClick}
+          />
+          <ListTodo 
+            className="w-6 h-6 text-green-500 cursor-pointer"
+            onClick={handleListClick}
+          />
         </div>
       </div>
 
@@ -68,21 +107,50 @@ const Index = () => {
       {/* Categories */}
       <div className="px-4 mb-4">
         <div className="flex gap-2 overflow-x-auto pb-2">
-          <CategoryButton color="rose-500" icon={<Music />}>My Songs</CategoryButton>
-          <CategoryButton color="green-500">Vocal Range Test</CategoryButton>
-          <CategoryButton color="yellow-500">Musical Blessing</CategoryButton>
-          <CategoryButton color="pink-500" icon={<User />}>Artists</CategoryButton>
+          <CategoryButton 
+            color="rose-500" 
+            icon={<Music />}
+            onClick={() => handleCategoryClick("My Songs")}
+          >
+            My Songs
+          </CategoryButton>
+          <CategoryButton 
+            color="green-500"
+            onClick={() => handleCategoryClick("Vocal Range Test")}
+          >
+            Vocal Range Test
+          </CategoryButton>
+          <CategoryButton 
+            color="yellow-500"
+            onClick={() => handleCategoryClick("Musical Blessing")}
+          >
+            Musical Blessing
+          </CategoryButton>
+          <CategoryButton 
+            color="pink-500" 
+            icon={<User />}
+            onClick={() => handleCategoryClick("Artists")}
+          >
+            Artists
+          </CategoryButton>
         </div>
       </div>
 
       {/* Tabs */}
       <div className="px-4 mb-4">
         <div className="flex gap-4 text-sm text-gray-600">
-          <Button variant="ghost" className="font-semibold">For You</Button>
-          <Button variant="ghost">Hot</Button>
-          <Button variant="ghost">Official</Button>
-          <Button variant="ghost">Original Songs</Button>
-          <Button variant="ghost">Best Movie</Button>
+          {["For You", "Hot", "Official", "Original Songs", "Best Movie"].map((tab) => (
+            <Button
+              key={tab}
+              variant="ghost"
+              className={`font-semibold ${
+                activeTab === tab ? "text-black border-b-2 border-black" : ""
+              }`}
+              onClick={() => handleTabClick(tab)}
+            >
+              {tab}
+            </Button>
+          ))}
         </div>
       </div>
 
