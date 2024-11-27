@@ -10,6 +10,7 @@ import RoomPage from "./pages/Room";
 import StorePage from "./pages/Store";
 import ListPage from "./pages/List";
 import SingPage from "./pages/Sing";
+import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/store" element={<StorePage />} />
           <Route path="/list" element={<ListPage />} />
           <Route path="/sing" element={<SingPage />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<Navigate to="/opening" replace />} />
         </Routes>
       </BrowserRouter>
