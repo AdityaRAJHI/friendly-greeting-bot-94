@@ -4,20 +4,35 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Edit2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { uploadProfileImage } from "@/lib/supabase";
 
 export const ProfileHeader = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [username, setUsername] = useState("Navi_star0329");
+  const [avatarUrl, setAvatarUrl] = useState("/lovable-uploads/b1ca1849-ac3d-40e8-8453-aa9e9fe7757e.png");
+  const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // In a real app, you would upload the file to a server here
-      toast({
-        title: "Profile picture updated",
-        description: "Your profile picture has been successfully updated.",
-      });
+      try {
+        setIsUploading(true);
+        const publicUrl = await uploadProfileImage(file);
+        setAvatarUrl(publicUrl);
+        toast({
+          title: "Success",
+          description: "Profile picture updated successfully",
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to update profile picture",
+          variant: "destructive",
+        });
+      } finally {
+        setIsUploading(false);
+      }
     }
   };
 
@@ -34,7 +49,7 @@ export const ProfileHeader = () => {
     <div className="flex items-center gap-4 p-4">
       <div className="relative">
         <Avatar className="w-12 h-12 cursor-pointer">
-          <AvatarImage src="/lovable-uploads/b1ca1849-ac3d-40e8-8453-aa9e9fe7757e.png" />
+          <AvatarImage src={avatarUrl} />
           <AvatarFallback>NS</AvatarFallback>
         </Avatar>
         <label className="absolute bottom-0 right-0 cursor-pointer">
@@ -44,6 +59,7 @@ export const ProfileHeader = () => {
             className="hidden"
             accept="image/*"
             onChange={handleImageChange}
+            disabled={isUploading}
           />
         </label>
       </div>
