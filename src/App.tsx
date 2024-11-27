@@ -11,6 +11,7 @@ import StorePage from "./pages/Store";
 import ListPage from "./pages/List";
 import SingPage from "./pages/Sing";
 import Profile from "./pages/Profile";
+import Chat from "./pages/Chat";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/list" element={<ListPage />} />
           <Route path="/sing" element={<SingPage />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/chat" element={<Chat />} />
           <Route path="*" element={<Navigate to="/opening" replace />} />
         </Routes>
       </BrowserRouter>
