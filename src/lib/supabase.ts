@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Default values for development - replace these with your actual Supabase project values
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://xyzcompany.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtdGhkcXl1dmF5YnNzeWNyeWNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDcyMjk4MDAsImV4cCI6MjAyMjgwNTgwMH0.2wXpxcd8zrqnzgd8RQf_-dKhPOBXPJJzlcpYJQFBH0M';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://fwdldbdaspvxowvnlozv.supabase.co';
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3ZGxkYmRhc3B2eG93dm5sb3p2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3MzQ0MjksImV4cCI6MjA0ODMxMDQyOX0.Xrx2oTIYxcbhMhTJCtUyQp1SKOAt_ojOsCdtXOuWKFU';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
