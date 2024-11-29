@@ -18,7 +18,6 @@ const Opening = () => {
   const { toast } = useToast();
   const { user } = useAuth();
 
-  // If user is already logged in, redirect to home
   if (user) {
     navigate("/");
     return null;
@@ -51,17 +50,22 @@ const Opening = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gradient-to-b from-purple-50 to-white">
       <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center mb-8"
+      >
+        <h1 className="text-6xl font-bold text-purple-900 mb-2">SingGuru</h1>
+        <p className="text-gray-600 italic">made with love by RajkumarSinha</p>
+      </motion.div>
+
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
         className="w-full max-w-md space-y-8"
       >
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-purple-900">Welcome</h1>
-          <p className="text-gray-600">Sign in to continue to your account</p>
-        </div>
-
-        <Card className="p-6">
+        <Card className="p-6 shadow-lg border-purple-100">
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="signin">Sign In</TabsTrigger>
