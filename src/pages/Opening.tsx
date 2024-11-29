@@ -24,6 +24,15 @@ const Opening = () => {
   }
 
   const handleAuth = async (type: 'signin' | 'signup') => {
+    if (!email || !password) {
+      toast({
+        title: "Error",
+        description: "Please enter both email and password",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
     try {
       if (type === 'signup') {
@@ -36,10 +45,19 @@ const Opening = () => {
         await signInWithEmail(email, password);
         navigate("/");
       }
-    } catch (error) {
+    } catch (error: any) {
+      let errorMessage = "An error occurred";
+      
+      // Parse the error message from Supabase
+      if (error.message.includes("invalid_credentials")) {
+        errorMessage = "Invalid email or password";
+      } else if (error.message.includes("Email not confirmed")) {
+        errorMessage = "Please verify your email before signing in";
+      }
+      
       toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "An error occurred",
+        title: "Authentication Error",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
