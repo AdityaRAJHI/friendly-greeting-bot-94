@@ -1,0 +1,9 @@
+export { default as Opening } from './Opening';
+export { default as Index } from './Index';
+export { default as NotificationPage } from './Notification';
+export { default as RoomPage } from './Room';
+export { default as StorePage } from './Store';
+export { default as ListPage } from './List';
+export { default as SingPage } from './Sing';
+export { default as Profile } from './Profile';
+export { default as Chat } from './Chat';
