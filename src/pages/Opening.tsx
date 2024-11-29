@@ -39,7 +39,7 @@ const Opening = () => {
         await signUp(email, password);
         toast({
           title: "Account created",
-          description: "Please check your email to verify your account.",
+          description: "Please check your email to verify your account before signing in.",
         });
       } else {
         await signInWithEmail(email, password);
@@ -48,11 +48,10 @@ const Opening = () => {
     } catch (error: any) {
       let errorMessage = "An error occurred";
       
-      // Parse the error message from Supabase
       if (error.message.includes("invalid_credentials")) {
         errorMessage = "Invalid email or password";
       } else if (error.message.includes("Email not confirmed")) {
-        errorMessage = "Please verify your email before signing in";
+        errorMessage = "Please verify your email before signing in. Check your inbox for the verification link.";
       }
       
       toast({
