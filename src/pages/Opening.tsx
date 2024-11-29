@@ -38,26 +38,32 @@ const Opening = () => {
       if (type === 'signup') {
         await signUp(email, password);
         toast({
-          title: "Account created",
-          description: "Please check your email to verify your account before signing in.",
+          title: "Success",
+          description: "Account created! Please check your email to verify your account before signing in.",
+          duration: 6000,
         });
+        setEmail("");
+        setPassword("");
       } else {
         await signInWithEmail(email, password);
         navigate("/");
       }
     } catch (error: any) {
       let errorMessage = "An error occurred";
+      let errorTitle = "Error";
       
       if (error.message.includes("invalid_credentials")) {
         errorMessage = "Invalid email or password";
       } else if (error.message.includes("Email not confirmed")) {
-        errorMessage = "Please verify your email before signing in. Check your inbox for the verification link.";
+        errorTitle = "Email Not Verified";
+        errorMessage = "Please verify your email before signing in. Check your inbox for the verification link. If you can't find it, try signing up again.";
       }
       
       toast({
-        title: "Authentication Error",
+        title: errorTitle,
         description: errorMessage,
         variant: "destructive",
+        duration: 5000,
       });
     } finally {
       setIsLoading(false);
