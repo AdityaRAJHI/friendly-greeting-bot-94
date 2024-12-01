@@ -4,8 +4,31 @@ import { Crown, Gift, Mic, Music2, Plus, User, UserRound, ChevronRight } from "l
 import { Navigation } from "@/components/Navigation";
 import { ProfileHeader } from "@/components/ProfileHeader";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { signOut } from "@/lib/supabase";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      navigate("/opening");
+      toast({
+        title: "Logged out successfully",
+        description: "You have been logged out of your account",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to log out. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="pb-20">
       <div className="flex flex-col">
@@ -107,6 +130,17 @@ const Profile = () => {
               <ChevronRight className="text-gray-400" />
             </div>
           </div>
+        </div>
+
+        {/* Logout Button */}
+        <div className="p-4">
+          <Button 
+            variant="destructive" 
+            className="w-full"
+            onClick={handleLogout}
+          >
+            Logout
+          </Button>
         </div>
       </div>
 
