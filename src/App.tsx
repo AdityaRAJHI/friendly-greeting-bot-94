@@ -14,7 +14,11 @@ import {
   ListPage,
   SingPage,
   Profile,
-  Chat
+  Chat,
+  LiveDuet,
+  PlayLudo,
+  PlayBilliards,
+  PlayGame
 } from "@/pages";
 
 const queryClient = new QueryClient({
@@ -43,6 +47,10 @@ const App = () => (
             <Route path="/sing" element={<RequireAuth><SingPage /></RequireAuth>} />
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
             <Route path="/chat" element={<RequireAuth><Chat /></RequireAuth>} />
+            <Route path="/live-duet" element={<RequireAuth><LiveDuet /></RequireAuth>} />
+            <Route path="/play-ludo" element={<RequireAuth><PlayLudo /></RequireAuth>} />
+            <Route path="/play-billiards" element={<RequireAuth><PlayBilliards /></RequireAuth>} />
+            <Route path="/play-game" element={<RequireAuth><PlayGame /></RequireAuth>} />
             <Route path="*" element={<Navigate to="/opening" replace />} />
           </Routes>
         </BrowserRouter>

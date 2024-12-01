@@ -7,3 +7,7 @@ export { default as ListPage } from './List';
 export { default as SingPage } from './Sing';
 export { default as Profile } from './Profile';
 export { default as Chat } from './Chat';
+export { default as LiveDuet } from './LiveDuet';
+export { default as PlayLudo } from './PlayLudo';
+export { default as PlayBilliards } from './PlayBilliards';
+export { default as PlayGame } from './PlayGame';
