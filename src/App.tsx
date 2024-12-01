@@ -8,11 +8,11 @@ import { RequireAuth } from "@/middleware/auth";
 import {
   Opening,
   Index,
-  NotificationPage,
-  RoomPage,
-  StorePage,
-  ListPage,
-  SingPage,
+  Notification,
+  Room,
+  Store,
+  List,
+  Sing,
   Profile,
   Chat,
   LiveDuet,
@@ -40,11 +40,11 @@ const App = () => (
           <Routes>
             <Route path="/opening" element={<Opening />} />
             <Route path="/" element={<RequireAuth><Index /></RequireAuth>} />
-            <Route path="/notification" element={<RequireAuth><NotificationPage /></RequireAuth>} />
-            <Route path="/room" element={<RequireAuth><RoomPage /></RequireAuth>} />
-            <Route path="/store" element={<RequireAuth><StorePage /></RequireAuth>} />
-            <Route path="/list" element={<RequireAuth><ListPage /></RequireAuth>} />
-            <Route path="/sing" element={<RequireAuth><SingPage /></RequireAuth>} />
+            <Route path="/notification" element={<RequireAuth><Notification /></RequireAuth>} />
+            <Route path="/room" element={<RequireAuth><Room /></RequireAuth>} />
+            <Route path="/store" element={<RequireAuth><Store /></RequireAuth>} />
+            <Route path="/list" element={<RequireAuth><List /></RequireAuth>} />
+            <Route path="/sing" element={<RequireAuth><Sing /></RequireAuth>} />
             <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
             <Route path="/chat" element={<RequireAuth><Chat /></RequireAuth>} />
             <Route path="/live-duet" element={<RequireAuth><LiveDuet /></RequireAuth>} />
