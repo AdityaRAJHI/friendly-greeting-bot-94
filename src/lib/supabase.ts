@@ -32,16 +32,16 @@ export const uploadProfileImage = async (file: File) => {
   try {
     const fileExt = file.name.split('.').pop();
     const fileName = `${Math.random()}.${fileExt}`;
-    const filePath = `profile-images/${fileName}`;
+    const filePath = `${fileName}`; // Simplified path
 
     const { error: uploadError } = await supabase.storage
-      .from('profile-images')
+      .from('lovable-uploads') // Using the existing public bucket
       .upload(filePath, file);
 
     if (uploadError) throw uploadError;
 
     const { data: { publicUrl } } = supabase.storage
-      .from('profile-images')
+      .from('lovable-uploads')
       .getPublicUrl(filePath);
 
     return publicUrl;
